@@ -1,0 +1,10 @@
+{
+    "eventName": "farm",
+    "url": "https://katespetes.servicebus.windows.net/sensors/messages",
+    "requestType": "POST",
+    "azure_sas_token": {
+        "key_name": "RootManageSharedAccessKey",
+        "key": "YxiEvZ+6+d9lcdMfLPT1whcxkqvYdW4/rRFZ76cOPnA="
+    },
+    "mydevices": true
+}
