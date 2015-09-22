@@ -6,10 +6,15 @@ var extend = require('xtend');
 
 var settings = {
 
+	// see overrides.js
+	database_config: null,
+
+
+	_: null
 };
 
 
-var overridesFile = "overrides.js";
+var overridesFile = "./overrides.js";
 if (fs.existsSync(overridesFile)) {
 	try{
 		var overridesObj = require(overridesFile);

@@ -1,4 +1,5 @@
 var express = require('express');
+var Database = require('../lib/Database.js');
 var router = express.Router();
 
 
@@ -14,7 +15,14 @@ router.get('/', function(req, res, next) {
 });
 
 router.get('/coop', function(req, res, next) {
-  res.send('respond with a resource coop');
+
+	Database.query("select * from coop").then(function(records) {
+		res.send("got some records! ");
+	}, function(err) {
+		res.send("something went wrong!");
+	});
+
+  //res.send('respond with a resource coop');
 });
 
 router.get('/tub', function(req, res, next) {
