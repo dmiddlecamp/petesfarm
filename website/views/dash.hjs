@@ -12,12 +12,10 @@
     <script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>
 </head>
 <body>
-    <h3>Hot Tub Temp History</h3>
     <div class="chartContainer">
         <div id="tubChart" class="innerChart" >hot tub temperature history loading...</div>
     </div>
 
-    <h3>Chicken Coop Temp History</h3>
     <div class="chartContainer">
         <div id="coopChart" class="innerChart">coop temperature history loading...</div>
     </div>

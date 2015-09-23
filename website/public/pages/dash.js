@@ -6,7 +6,7 @@
  * * C3 is slow, and a little picky.
  * * chart.js is slow, and doesn't scale the x axis properly, doesn't understand the time, just thinks they're labels
  * * maybe chart.js / c3 are better fits for very small summary datasets?
- * [ ]  should try http://dygraphs.com/ next.
+ * [x]  should try http://dygraphs.com/ next.
  */
 
 
@@ -15,15 +15,14 @@
 	/* source for the dash page */
 
 	/*
-	 TODO: show current value when clicking graph
-	 TODO: initialize current value label to latest reading w/Timestamp on load
-	 TODO: split weather graph altitude, pressure, into another graph / axis for readability
-	 TODO: add nice labels to charts
-	 TODO: add nice legends to charts
-	 TODO: add dynamic updating to charts
-	 TODO: make page look nice
-	 TODO: load weather forecast for tonight / tomorrow
-		 */
+	TODO: show current value when clicking graph
+	TODO: initialize current value label to latest reading w/Timestamp on load
+	TODO: add dynamic updating to charts
+	TODO: make page look nice
+	TODO: load weather forecast for tonight / tomorrow
+	TODO: quick infographic view of last values / heads up readout?
+	TODO: add wind direction
+	 */
 
 
 	var Page = function() {};
@@ -51,7 +50,6 @@
 					//customBars: true,
 					title: 'Chicken Coop Temperatures',
 					ylabel: 'Temperature (F)',
-
 					legend: 'always',
 					labelsDivStyles: { 'textAlign': 'right' }
 				}
@@ -66,7 +64,12 @@
 				document.getElementById("tubChart"),
 				"/data/tub.csv",
 				{
-					showRangeSelector: true
+					showRangeSelector: true,
+					title: 'Hot Tub Temperature',
+					ylabel: 'Temperature (F)',
+					legend: 'always',
+					labelsDivStyles: { 'textAlign': 'right' }
+
 					//rollPeriod: 3
 					//errorBars: true
 				}
@@ -81,7 +84,11 @@
 				document.getElementById("weatherChart"),
 				"/data/weather.csv?columns=temp1,soilTemp,humidity,wind_mph,rain,published_at", {
 					showRangeSelector: true,
-					rollPeriod: 5
+					rollPeriod: 5,
+					title: 'Weather History',
+					ylabel: '*F, MPH, % humidity, inches',
+					legend: 'always',
+					labelsDivStyles: { 'textAlign': 'right' }
 				}
 			);
 		},
@@ -89,9 +96,13 @@
 		makePressureChart: function() {
 			this.pressureChart = new Dygraph(
 				document.getElementById("pressureChart"),
-				"/data/weather.csv?columns=pressure,altitude,published_at", {
+				"/data/weather.csv?columns=pressure,published_at", {
 					showRangeSelector: true,
-					rollPeriod: 5
+					rollPeriod: 5,
+					title: 'Air Pressure History',
+					ylabel: 'pressure',
+					legend: 'always',
+					labelsDivStyles: { 'textAlign': 'right' }
 				}
 			);
 		},
