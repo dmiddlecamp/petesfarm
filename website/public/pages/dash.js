@@ -17,11 +17,13 @@
 	var Page = function() {};
 	Page.prototype = {
 		init: function() {
-			this.makeTubChart();
+			this.makeTubChart3();
 			//this.makeTubChart2();
 
-			this.makeWeatherChart();
-			this.makeCoopChart();
+			//this.makeWeatherChart();
+			this.makeWeatherChart2();
+
+			//this.makeCoopChart();
 			this.makeCoopChart2();
 
 			console.log("loaded!");
@@ -81,15 +83,33 @@
 		 * using dygraphs
 		 */
 		makeCoopChart2: function() {
-
-
-			g = new Dygraph(
+			this.coopChart = new Dygraph(
 				// containing div
-				document.getElementById("coopChart2"),
+				document.getElementById("coopChart"),
 				"/data/coop.csv"
 			);
+		},
 
+		/**
+		 * using dygraphs
+		 */
+		makeTubChart3: function() {
+			this.tubChart = new Dygraph(
+				// containing div
+				document.getElementById("tubChart"),
+				"/data/tub.csv"
+			);
+		},
 
+		/**
+		 * using dygraphs
+		 */
+		makeWeatherChart2: function() {
+			this.weatherChart = new Dygraph(
+				// containing div
+				document.getElementById("weatherChart"),
+				"/data/weather.csv"
+			);
 		},
 
 		/**
@@ -112,8 +132,6 @@
 							'wind_mph',
 							'soilTemp'
 						]
-
-
 					}
 				},
 				axis: {

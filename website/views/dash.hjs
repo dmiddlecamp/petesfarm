@@ -20,7 +20,7 @@
 
     <h3>Chicken Coop Temp History</h3>
     <div id="coopChart">coop temperature history loading...</div>
-    <div id="coopChart2"></div>
+    <!--<div id="coopChart2"></div>-->
 
 
     <h3>Weather History</h3>
