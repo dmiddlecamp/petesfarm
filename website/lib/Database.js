@@ -22,16 +22,19 @@ Database.prototype = {
 		}
 
 		var that = this;
+		var dfd = when.defer();
 		var connection = new sql.Connection(settings.database_config, function(err) {
 			if (err) {
 				console.error("error setting up db connection ", err);
-				return when.reject(err);
+				return dfd.reject(err);
 			}
 			else {
 				that._connection = connection;
-				return when.resolve(that._connection);
+				return dfd.resolve(that._connection);
 			}
 		});
+
+		return dfd.promise;
 	},
 
 
