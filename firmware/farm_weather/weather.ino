@@ -66,6 +66,7 @@ volatile long lastWindIRQ = 0;
 volatile byte windClicks = 0;
 
 unsigned int lastPublish;
+float rainfallThisMinute = 0;
 float rainin = 0; // [rain inches over the past hour)] -- the accumulated rainfall in the past 60 min
 long lastWindCheck = 0;
 volatile float dailyrainin = 0; // [rain inches so far today in local time]
@@ -115,7 +116,7 @@ void setup()
     baro.enableEventFlags(); //Necessary register calls to enble temp, baro ansd alt
 
     // attach external interrupt pins to IRQ functions
-    //attachInterrupt(RAIN, rainIRQ, FALLING);
+    attachInterrupt(RAIN, rainIRQ, FALLING);
     attachInterrupt(WSPEED, wspeedIRQ, FALLING);
 
 }
@@ -132,6 +133,9 @@ void loop()
     if ((now - lastPublish) > 60000) {
       printInfo();
       lastPublish = now;
+
+      //we publish once a minute, so lets reset this every time we publish.
+      rainfallThisMinute = 0;
     }
     
 
@@ -157,6 +161,7 @@ void printInfo()
                     + ", \"altitude\": " + String(altf) 
                     + ", \"wind_mph\": " + String(get_wind_speed())
                     + ", \"soilTemp\": " + String(inSoilTemperature)
+                    + ", \"rain\": " + String(rainfallThisMinute)
                     //+ ", \"hum\": " + humidity 
                     + "}";
                     
@@ -227,6 +232,27 @@ void updateSoilTemp() {
     inSoilTemperature = sensors.getTempFByIndex(0);
 }
 
+
+volatile unsigned long raintime, rainlast, raininterval, rain;
+
+
+//Interrupt routines (these are called by the hardware interrupts, not by the main code)
+//-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+void rainIRQ()
+// Count rain gauge bucket tips as they occur
+// Activated by the magnet and reed switch in the rain gauge, attached to input D2
+{
+  raintime = millis(); // grab current time
+  raininterval = raintime - rainlast; // calculate interval between this and last event
+
+  if (raininterval > 10) // ignore switch-bounce glitches less than 10mS after initial edge
+  {
+    rainfallThisMinute += 0.011; //Each dump is 0.011" of water
+    //rainHour[minutes] += 0.011; //Increase this minute's amount of rain
+
+    rainlast = raintime; // set up for next event
+  }
+}
 
 void wspeedIRQ()
 // Activated by the magnet in the anemometer (2 ticks per rotation), attached to input D3
