@@ -1,0 +1,23 @@
+{
+    "eventName": "farm/weather",
+    "url": "https://katespetes.servicebus.windows.net/weather/messages",
+    "requestType": "POST",
+	"json": {
+		"temp1": "{{temp1}}",
+		"temp2": "{{temp2}}",
+		"humidity": "{{humidity}}",
+		"pressure": "{{pressure}}",
+		"altitude": "{{altitude}}",
+		"wind_mph": "{{wind_mph}}",
+		"soilTemp": "{{soilTemp}}",
+		"rain": "{{rain}}",
+		"published_at": "{{SPARK_PUBLISHED_AT}}",
+		"coreid": "{{SPARK_CORE_ID}}"
+	},
+    "azure_sas_token": {
+        "key_name": "YOUR_KEY_NAME",
+        "key": "YOUR_PASSWORD"
+    },
+	"nodefaults": true,
+    "mydevices": true
+}

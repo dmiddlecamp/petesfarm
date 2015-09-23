@@ -3,8 +3,9 @@
     "url": "https://katespetes.servicebus.windows.net/sensors/messages",
     "requestType": "POST",
     "azure_sas_token": {
-        "key_name": "RootManageSharedAccessKey",
-        "key": "YxiEvZ+6+d9lcdMfLPT1whcxkqvYdW4/rRFZ76cOPnA="
+        "key_name": "YOUR_KEY_NAME",
+        "key": "YOUR_PASSWORD"
     },
+	"nodefaults": true,
     "mydevices": true
 }
