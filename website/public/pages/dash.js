@@ -22,6 +22,7 @@
 
 			this.makeWeatherChart();
 			this.makeCoopChart();
+			this.makeCoopChart2();
 
 			console.log("loaded!");
 		},
@@ -76,7 +77,22 @@
 			});
 		},
 
-			/**
+		/**
+		 * using dygraphs
+		 */
+		makeCoopChart2: function() {
+
+
+			g = new Dygraph(
+				// containing div
+				document.getElementById("coopChart2"),
+				"/data/coop.csv"
+			);
+
+
+		},
+
+		/**
 		 * using c3.js
 		 */
 		makeWeatherChart: function() {
@@ -127,7 +143,7 @@
 							pointStrokeColor: "#fff",
 							pointHighlightFill: "#fff",
 							pointHighlightStroke: "rgba(220,220,220,1)",
-							data:  series
+							data: series
 						}
 					]
 				};
@@ -142,7 +158,7 @@
 					var labels = [];
 					var series = [];
 
-					for(var i=0;i<data.length;i++) {
+					for(var i = 0; i < data.length; i++) {
 						var d = data[i];
 
 						var timeLabel = moment(d.published_at).format("ddd, h:mm A");
@@ -150,13 +166,9 @@
 						labels.push(timeLabel);
 						series.push(d.temp);
 					}
-					makeChart(labels,series);
+					makeChart(labels, series);
 				}
 			});
-
-
-
-
 
 
 		},

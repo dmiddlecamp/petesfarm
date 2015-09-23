@@ -9,6 +9,9 @@
     <script src="/javascripts/d3.min.js"></script>
     <script src="/javascripts/c3.js"></script>
     <script src="/javascripts/jquery-1.11.3.min.js"></script>
+    <script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>
+
+
 
 </head>
 <body>
@@ -17,6 +20,8 @@
 
     <h3>Chicken Coop Temp History</h3>
     <div id="coopChart">coop temperature history loading...</div>
+    <div id="coopChart2"></div>
+
 
     <h3>Weather History</h3>
     <div id="weatherChart">weather history loading...</div>

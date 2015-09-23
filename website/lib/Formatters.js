@@ -16,11 +16,15 @@ var Formatters = {
 	 * @param records
 	 * @param time_prop
 	 */
-	timeCop: function(records, time_prop) {
+	timeCop: function(records, time_prop, asNumeric) {
 		for(var i = 0; i < records.length; i++) {
 			var r = records[i];
-			//r[time_prop] = moment(r[time_prop]).toJSON();
-			r[time_prop] = moment(r[time_prop]).valueOf();
+			if (asNumeric) {
+				r[time_prop] = moment(r[time_prop]).valueOf();
+			}
+			else {
+				r[time_prop] = moment(r[time_prop]).toJSON();
+			}
 		}
 		return records;
 	},
@@ -77,6 +81,52 @@ var Formatters = {
 			}
 		}
 		return records;
+	},
+
+	/**
+	 * cheaply formats json objects into a CSV string
+	 * @param records
+	 * @param firstColumn if specified, ensures this column is first in the CSV
+	 * @returns {string}
+	 */
+	asCSV: function(records, firstColumn) {
+		if (!records || (records.length == 0)) {
+			return "";
+		}
+
+		// assume the first row has all the properties
+		var firstRow = records[0];
+		var columns = [];
+		var rows = [];
+
+		for(var key in firstRow) {
+			if (key == firstColumn) {
+				continue;
+			}
+
+			columns.push(key);
+		}
+		if (firstColumn) {
+			columns.splice(0, 0, firstColumn);
+		}
+
+		rows.push(columns.join(","));
+
+		for(var i = 0; i < records.length; i++) {
+			var r = records[i];
+
+			var line = [];
+
+			for(var c = 0; c < columns.length; c++) {
+				var prop = columns[c];
+				line.push(r[prop]);
+			}
+
+			//Note: this doesn't do any fancy CSV escaping.  Insert your favorite CSV solution here
+			rows.push(line.join(","));
+		}
+
+		return rows.join("\n");
 	},
 
 	_: null
