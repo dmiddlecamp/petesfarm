@@ -12,9 +12,13 @@
 
 </head>
 <body>
+    <h3>Hot Tub Temp History</h3>
     <div id="tubChart">hot tub temperature history loading...</div>
-    <canvas id="tubChart2" width="400" height="400"></canvas>
+
+    <h3>Chicken Coop Temp History</h3>
     <div id="coopChart">coop temperature history loading...</div>
+
+    <h3>Weather History</h3>
     <div id="weatherChart">weather history loading...</div>
 
     <script src="/pages/dash.js"></script>

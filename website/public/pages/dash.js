@@ -18,7 +18,7 @@
 	Page.prototype = {
 		init: function() {
 			this.makeTubChart();
-			this.makeTubChart2();
+			//this.makeTubChart2();
 
 			this.makeWeatherChart();
 			this.makeCoopChart();
