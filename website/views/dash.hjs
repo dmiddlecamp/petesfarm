@@ -4,12 +4,13 @@
     <title>{{ title }}</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link rel='stylesheet' href='/stylesheets/c3.min.css'/>
-    <script src="/javascripts/moment.js"></script>
+    <script src="/javascripts/moment.min.js"></script>
     <!--<script src="/javascripts/Chart.min.js"></script>-->
-    <script src="/javascripts/d3.min.js"></script>
+    <!--<script src="/javascripts/d3.min.js"></script>-->
     <!--<script src="/javascripts/c3.js"></script>-->
-    <script src="/javascripts/jquery-1.11.3.min.js"></script>
-    <script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>
+    <!--<script src="/javascripts/jquery-1.11.3.min.js"></script>-->
+    <!--<script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>-->
+    <script type="text/javascript" src="/javascripts/dygraph-combined.js"></script>
 </head>
 <body>
 
@@ -27,15 +28,28 @@
         </div>
         <div class="dataBrick">
             Weather Info:
-            <span class="bigTemp">{{ latest.weather.temp1 }}</span>
-            <span class="bigTemp">{{ latest.weather.soilTemp }}</span>
-            <span class="bigTemp">{{ latest.weather.humidity }}</span>
-            <span class="bigTemp">{{ latest.weather.rain }}</span>
-            <span class="bigTemp">{{ latest.weather.wind_mph }}</span>
+            <span class="bigTemp">Temp {{ latest.weather.temp1 }}</span>
+            <span class="bigTemp">SoilTemp {{ latest.weather.soilTemp }}</span>
+            <span class="bigTemp">Humidity {{ latest.weather.humidity }}</span>
+            <span class="bigTemp">Rain {{ latest.weather.rain }}</span>
+            <span class="bigTemp">Wind Speed {{ latest.weather.wind_mph }}</span>
+            <!--<span class="bigTemp">{{ latest.weather.wind_dir }}</span>-->
 
             <span class="lastHeardDate">(last heard from: {{ latest.weather.published_at }})</span>
         </div>
     </div>
+
+
+    <div id="miniTub" class="miniChart" >loading...</div>
+    <div id="miniCoop" class="miniChart" >loading...</div>
+
+
+    <div id="miniSoilTemp" class="miniChart" >loading...</div>
+    <div id="miniWindSpeed" class="miniChart" >loading...</div>
+    <div id="miniHumidity" class="miniChart" >loading...</div>
+
+
+
 
 
     <div class="chartContainer">

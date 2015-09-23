@@ -34,12 +34,34 @@
 		init: function() {
 			this.makeTubChart();
 
+			this.makeMiniCharts();
+
 			this.makeCoopChart();
 			this.makeWeatherChart();
 			this.makePressureChart();
 
 			console.log("loaded!");
 		},
+
+		makeMiniCharts: function() {
+			this._miniSoilTemp = this._makeMini("miniSoilTemp", "Soil", 60, "/data/weather.csv?columns=soilTemp,published_at&count=1440&sort=DESC");
+			this._miniWindSpeed = this._makeMini("miniWindSpeed", "Wind", 60, "/data/weather.csv?columns=wind_mph,published_at&count=1440&sort=DESC");
+			this._miniHumidity = this._makeMini("miniHumidity", "Humidity", 60, "/data/weather.csv?columns=humidity,published_at&count=1440&sort=DESC");
+
+			this._miniTub = this._makeMini("miniTub", "Tub", 1, "/data/tub.csv?columns=temp,published_at&count=60&sort=DESC");
+			this._miniCoop = this._makeMini("miniCoop", "Coop", 5, "/data/coop.csv?columns=temp,published_at&count=120&sort=DESC");
+		},
+
+		_makeMini: function(divID, title, smoothing, query) {
+			return new Dygraph(
+				document.getElementById(divID),
+				query,
+				{
+					title: title,
+					rollPeriod: smoothing
+				});
+		},
+
 
 		/**
 		 * using dygraphs

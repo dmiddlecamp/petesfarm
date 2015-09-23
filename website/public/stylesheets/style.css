@@ -19,6 +19,13 @@ a {
     display: block;
 }
 
+.miniChart {
+    width: 200px;
+    height: 200px;
+}
+
+.miniChart .dygraph-title { font-size: 36px; text-shadow: gray 2px 2px 2px; }
+
 .innerChart {
     position: absolute;
     left: 10px;
