@@ -1,6 +1,7 @@
 var express = require('express');
 var Database = require('../lib/Database.js');
 var Formatters = require('../lib/Formatters.js');
+var utilities = require('../lib/Utilities.js');
 var router = express.Router();
 var when = require('when');
 
@@ -30,7 +31,22 @@ var DataLogic = {
 		});
 	},
 	weatherQuery: function(req) {
-		var query = "select top 4320 temp1, temp2, humidity, pressure, altitude, wind_mph, soilTemp, published_at " +
+		var numRows = 4320;
+
+
+		var allColumns = "temp1,temp2,humidity,pressure,altitude,wind_mph,soilTemp,rain,published_at".split(",");
+		var userColumns = allColumns;
+
+
+		var columnsParam = req.param("columns");
+		if (columnsParam) {
+			userColumns = columnsParam.split(",");
+
+			//sanitize your inputs kids!
+			userColumns = utilities.filterListInList(allColumns, userColumns);
+		}
+
+		var query = "select top 4320  " + userColumns.join(", ") +
 			" from weather order by published_at";
 
 		return Database.query(query).then(function(records) {

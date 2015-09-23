@@ -27,6 +27,11 @@
         <div id="weatherChart" class="innerChart">weather history loading...</div>
     </div>
 
+    <h3>Air Pressure / Altitude History</h3>
+    <div class="chartContainer">
+        <div id="pressureChart" class="innerChart">weather history loading...</div>
+    </div>
+
     <script src="/pages/dash.js"></script>
 </body>
 </html>

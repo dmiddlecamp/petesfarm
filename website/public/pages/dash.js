@@ -14,12 +14,26 @@
 (function() {
 	/* source for the dash page */
 
+	/*
+	 TODO: show current value when clicking graph
+	 TODO: initialize current value label to latest reading w/Timestamp on load
+	 TODO: split weather graph altitude, pressure, into another graph / axis for readability
+	 TODO: add nice labels to charts
+	 TODO: add nice legends to charts
+	 TODO: add dynamic updating to charts
+	 TODO: make page look nice
+	 TODO: load weather forecast for tonight / tomorrow
+		 */
+
+
 	var Page = function() {};
 	Page.prototype = {
 		init: function() {
 			this.makeTubChart();
-			this.makeWeatherChart();
+
 			this.makeCoopChart();
+			this.makeWeatherChart();
+			this.makePressureChart();
 
 			console.log("loaded!");
 		},
@@ -32,7 +46,14 @@
 				document.getElementById("coopChart"),
 				"/data/coop.csv",
 				{
-					//errorBars: true
+					showRangeSelector: true,
+					showRoller: true,
+					//customBars: true,
+					title: 'Chicken Coop Temperatures',
+					ylabel: 'Temperature (F)',
+
+					legend: 'always',
+					labelsDivStyles: { 'textAlign': 'right' }
 				}
 			);
 		},
@@ -45,6 +66,8 @@
 				document.getElementById("tubChart"),
 				"/data/tub.csv",
 				{
+					showRangeSelector: true
+					//rollPeriod: 3
 					//errorBars: true
 				}
 			);
@@ -56,82 +79,94 @@
 		makeWeatherChart: function() {
 			this.weatherChart = new Dygraph(
 				document.getElementById("weatherChart"),
-				"/data/weather.csv"
+				"/data/weather.csv?columns=temp1,soilTemp,humidity,wind_mph,rain,published_at", {
+					showRangeSelector: true,
+					rollPeriod: 5
+				}
+			);
+		},
+
+		makePressureChart: function() {
+			this.pressureChart = new Dygraph(
+				document.getElementById("pressureChart"),
+				"/data/weather.csv?columns=pressure,altitude,published_at", {
+					showRangeSelector: true,
+					rollPeriod: 5
+				}
 			);
 		},
 
 
-
 		//saved as a reference
 
-//		/**
-//		 * using c3.js
-//		 */
-//		makeTubChart: function() {
-//			this.tubChart = c3.generate({
-//				bindto: "#tubChart",
-//				data: {
-//					mimeType: 'json',
-//					url: '/data/tub.json',
-//					keys: {
-//						x: 'published_at',
-//						value: ['temp']
-//					}
-//				},
-//				axis: {
-//					x: {
-//						type: 'timeseries',
-//						tick: {
-//							format: '%a, %m-%d %H:%M'
-//						}
-//					}
-//				}
-//			});
-//		},
-//
-//		/**
-//		 * using chart.js
-//		 */
-//		makeTubChart2: function() {
-//			var makeChart = function(labels, series) {
-//				var data = {
-//					labels: labels,
-//					datasets: [
-//						{
-//							label: "My First dataset",
-//							fillColor: "rgba(220,220,220,0.2)",
-//							strokeColor: "rgba(220,220,220,1)",
-//							pointColor: "rgba(220,220,220,1)",
-//							pointStrokeColor: "#fff",
-//							pointHighlightFill: "#fff",
-//							pointHighlightStroke: "rgba(220,220,220,1)",
-//							data: series
-//						}
-//					]
-//				};
-//
-//				var ctx = $("#tubChart2").get(0).getContext("2d");
-//				var tubChart2 = new Chart(ctx).Line(data);
-//			};
-//
-//			$.ajax({
-//				url: "/data/tub.json",
-//				success: function(data) {
-//					var labels = [];
-//					var series = [];
-//
-//					for(var i = 0; i < data.length; i++) {
-//						var d = data[i];
-//
-//						var timeLabel = moment(d.published_at).format("ddd, h:mm A");
-//
-//						labels.push(timeLabel);
-//						series.push(d.temp);
-//					}
-//					makeChart(labels, series);
-//				}
-//			});
-//		},
+		//		/**
+		//		 * using c3.js
+		//		 */
+		//		makeTubChart: function() {
+		//			this.tubChart = c3.generate({
+		//				bindto: "#tubChart",
+		//				data: {
+		//					mimeType: 'json',
+		//					url: '/data/tub.json',
+		//					keys: {
+		//						x: 'published_at',
+		//						value: ['temp']
+		//					}
+		//				},
+		//				axis: {
+		//					x: {
+		//						type: 'timeseries',
+		//						tick: {
+		//							format: '%a, %m-%d %H:%M'
+		//						}
+		//					}
+		//				}
+		//			});
+		//		},
+		//
+		//		/**
+		//		 * using chart.js
+		//		 */
+		//		makeTubChart2: function() {
+		//			var makeChart = function(labels, series) {
+		//				var data = {
+		//					labels: labels,
+		//					datasets: [
+		//						{
+		//							label: "My First dataset",
+		//							fillColor: "rgba(220,220,220,0.2)",
+		//							strokeColor: "rgba(220,220,220,1)",
+		//							pointColor: "rgba(220,220,220,1)",
+		//							pointStrokeColor: "#fff",
+		//							pointHighlightFill: "#fff",
+		//							pointHighlightStroke: "rgba(220,220,220,1)",
+		//							data: series
+		//						}
+		//					]
+		//				};
+		//
+		//				var ctx = $("#tubChart2").get(0).getContext("2d");
+		//				var tubChart2 = new Chart(ctx).Line(data);
+		//			};
+		//
+		//			$.ajax({
+		//				url: "/data/tub.json",
+		//				success: function(data) {
+		//					var labels = [];
+		//					var series = [];
+		//
+		//					for(var i = 0; i < data.length; i++) {
+		//						var d = data[i];
+		//
+		//						var timeLabel = moment(d.published_at).format("ddd, h:mm A");
+		//
+		//						labels.push(timeLabel);
+		//						series.push(d.temp);
+		//					}
+		//					makeChart(labels, series);
+		//				}
+		//			});
+		//		},
 
 
 		_: null
