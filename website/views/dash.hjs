@@ -5,26 +5,27 @@
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link rel='stylesheet' href='/stylesheets/c3.min.css'/>
     <script src="/javascripts/moment.js"></script>
-    <script src="/javascripts/Chart.min.js"></script>
+    <!--<script src="/javascripts/Chart.min.js"></script>-->
     <script src="/javascripts/d3.min.js"></script>
-    <script src="/javascripts/c3.js"></script>
+    <!--<script src="/javascripts/c3.js"></script>-->
     <script src="/javascripts/jquery-1.11.3.min.js"></script>
     <script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>
-
-
-
 </head>
 <body>
     <h3>Hot Tub Temp History</h3>
-    <div id="tubChart">hot tub temperature history loading...</div>
+    <div class="chartContainer">
+        <div id="tubChart" class="innerChart" >hot tub temperature history loading...</div>
+    </div>
 
     <h3>Chicken Coop Temp History</h3>
-    <div id="coopChart">coop temperature history loading...</div>
-    <!--<div id="coopChart2"></div>-->
-
+    <div class="chartContainer">
+        <div id="coopChart" class="innerChart">coop temperature history loading...</div>
+    </div>
 
     <h3>Weather History</h3>
-    <div id="weatherChart">weather history loading...</div>
+    <div class="chartContainer">
+        <div id="weatherChart" class="innerChart">weather history loading...</div>
+    </div>
 
     <script src="/pages/dash.js"></script>
 </body>
