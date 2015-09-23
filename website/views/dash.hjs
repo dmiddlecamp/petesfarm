@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{{ title }}</title>
+    <link rel='stylesheet' href='/stylesheets/style.css'/>
+    <script src="/javascripts/Chart.min.js"></script>
+</head>
+<body>
+
+
+    <script src="/pages/dash.js"></script>
+</body>
+</html>
