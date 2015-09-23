@@ -18,6 +18,8 @@ router.get('/coop.json', function(req, res, next) {
 	var query = "select temp, published_at from coop order by published_at";
 	Database.query(query).then(function(records) {
 		records = Formatters.timeCop(records, "published_at");
+		records = Formatters.bruteForceFilter(records, "temp", -100, 200);
+
 		res.json(records);
 	}, function(err) {
 		res.send("something went wrong!");
@@ -39,6 +41,8 @@ router.get('/weather.json', function(req, res, next) {
 			" from weather order by published_at";
 	Database.query(query).then(function(records) {
 		records = Formatters.timeCop(records, "published_at");
+		records = Formatters.bruteForceSmooth(records, "soilTemp", -150, 150);
+
 		res.json(records);
 	}, function(err) {
 		res.send("something went wrong!");
