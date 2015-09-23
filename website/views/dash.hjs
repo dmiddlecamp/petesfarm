@@ -12,6 +12,32 @@
     <script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>
 </head>
 <body>
+
+    <h3>Heads up readouts</h3>
+    <div class="headsUp">
+        <div class="dataBrick">
+            Hot Tub Temp:
+            <span class="bigTemp">{{ latest.tub.temp }}</span>
+            <span class="lastHeardDate">(last heard from: {{ latest.tub.published_at }})</span>
+        </div>
+        <div class="dataBrick">
+            Coop Temp:
+            <span class="bigTemp">{{ latest.coop.temp }}</span>
+            <span class="lastHeardDate">(last heard from: {{ latest.coop.published_at }})</span>
+        </div>
+        <div class="dataBrick">
+            Weather Info:
+            <span class="bigTemp">{{ latest.weather.temp1 }}</span>
+            <span class="bigTemp">{{ latest.weather.soilTemp }}</span>
+            <span class="bigTemp">{{ latest.weather.humidity }}</span>
+            <span class="bigTemp">{{ latest.weather.rain }}</span>
+            <span class="bigTemp">{{ latest.weather.wind_mph }}</span>
+
+            <span class="lastHeardDate">(last heard from: {{ latest.weather.published_at }})</span>
+        </div>
+    </div>
+
+
     <div class="chartContainer">
         <div id="tubChart" class="innerChart" >hot tub temperature history loading...</div>
     </div>
