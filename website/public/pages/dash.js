@@ -21,6 +21,10 @@
 	TODO: make page look nice
 	TODO: load weather forecast for tonight / tomorrow
 	TODO: quick infographic view of last values / heads up readout?
+		## get latest row:
+		/data/weather.json?count=1&sort=DESC
+
+	TODO: add coop decibels
 	TODO: add wind direction
 	 */
 
