@@ -20,8 +20,14 @@ Database.prototype = {
 				return when.resolve(this._connection);
 			}
 
+			if (this._connectDfd) {
+				return this._connectDfd;
+			}
+
+
 			var that = this;
 			var dfd = when.defer();
+			this._connectDfd = dfd.promise;
 
 			sql.on('error', function(err) {
 				console.error("sql error!? ", err);
@@ -30,7 +36,7 @@ Database.prototype = {
 			var connection = new sql.Connection(settings.database_config, function(err) {
 				if (err) {
 					console.error("error setting up db connection ", err);
-					return dfd.reject(err);
+					dfd.reject(err);
 				}
 				else {
 					that._connection = connection;
@@ -38,8 +44,10 @@ Database.prototype = {
 					that._connection.on('error', function(err) {
 						console.error("sql conn error!? ", err);
 					});
-					return dfd.resolve(that._connection);
+					dfd.resolve(that._connection);
 				}
+
+				that._connectDfd = null;
 			});
 
 			return dfd.promise;

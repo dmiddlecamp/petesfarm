@@ -16,7 +16,7 @@ var settings = require('../settings.js');
 //});
 
 var renderDashboard = function(req, res) {
-		pipeline([
+	pipeline([
 		function() {
 			return DataLogic.getLatest();
 		},
