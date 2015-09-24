@@ -7,9 +7,15 @@ var extend = require('xtend');
 var settings = {
 
 	// see overrides.js
-	database_config: null,
-
-
+	database_config: {
+		user: null,
+		password: null,
+		server: null,
+		database: 'farm-db',
+		options: {
+			encrypt: true
+		}
+	},
 	_: null
 };
 
@@ -23,5 +29,17 @@ if (fs.existsSync(overridesFile)) {
 	catch(ex) {
 		console.error("error opening overrides ", ex);
 	}
+}
+else {
+	var env_vars = {
+		database_config: {
+			user: process.env["database_user"],
+			password: process.env["database_password"],
+			server: process.env["database_server"],
+			database: process.env["database_name"]
+		}
+	};
+
+	settings = extend(settings, env_vars);
 }
 module.exports = settings;
