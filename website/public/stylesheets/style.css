@@ -1,5 +1,5 @@
 body {
-  padding: 50px;
+  padding: 5px;
   font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
 }
 
@@ -74,6 +74,7 @@ a {
 .dataBrick .bigTemp {
     display:block;
     font-size: 36pt;
+    font-weight: bold;
     margin-left: 25px;
     margin-top: 5px;
 }
@@ -81,6 +82,7 @@ a {
 .dataBrick text {
     color: #999;
     font-size: 24pt;
+    font-weight: normal;
 }
 
 .dataBrick .lastHeardDate {
