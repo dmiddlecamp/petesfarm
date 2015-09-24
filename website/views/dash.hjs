@@ -45,6 +45,8 @@
 
 
     <div class="miniChartContainer">
+        <h3>Recent Trends</h3>
+
         <div id="miniSoilTemp" class="miniChart" >loading...</div>
         <div id="miniWindSpeed" class="miniChart" >loading...</div>
         <div id="miniHumidity" class="miniChart" >loading...</div>
@@ -56,25 +58,33 @@
 
 
 
-    <h3></h3>
-    <div class="chartContainer">
-        <div id="tubChart" class="innerChart" >hot tub temperature history loading...</div>
+    <div class="bigChartContainer">
+        <h3>Long Trends</h3>
+
+        <div class="chartContainer">
+            <div id="tubChart" class="innerChart" >hot tub temperature history loading...</div>
+        </div>
+
+        <div class="chartContainer">
+            <div id="coopChart" class="innerChart">coop temperature history loading...</div>
+        </div>
+
+        <div class="chartContainer">
+            <div id="weatherChart" class="innerChart">weather history loading...</div>
+        </div>
+
+        <div class="chartContainer">
+            <div id="pressureChart" class="innerChart">weather history loading...</div>
+        </div>
+
     </div>
 
-    <div class="chartContainer">
-        <div id="coopChart" class="innerChart">coop temperature history loading...</div>
+    <div class="giantVideo">
+        <video controls preload="metadata">
+            <source src="/media/chickens_small.m4v" type="video/mp4">
+            <source src="/media/chickens.ogg" type="video/ogg">
+        </video>
     </div>
-
-    <h3>Weather History</h3>
-    <div class="chartContainer">
-        <div id="weatherChart" class="innerChart">weather history loading...</div>
-    </div>
-
-    <h3>Air Pressure / Altitude History</h3>
-    <div class="chartContainer">
-        <div id="pressureChart" class="innerChart">weather history loading...</div>
-    </div>
-
 
 
     <script src="/pages/dash.js"></script>

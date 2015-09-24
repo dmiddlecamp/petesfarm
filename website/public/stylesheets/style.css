@@ -19,24 +19,53 @@ a {
     display: block;
 }
 
+.chartContainer .dygraph-title { font-size: 24px; color: #999; }
+
+
 .clearBoth {
     clear:both;
 }
 
 .miniChartContainer {
     clear:both;
-    width:100%;
+    width:95%;
     display:block;
-
+    /*border: 1px solid #ccc;*/
+    margin: 0px;
+    padding: 15px;
 }
+
+.miniChartContainer h3 {
+    display:block;
+    color: #999;
+    font-size: 42pt;
+    margin: 0;
+}
+
+.bigChartContainer {
+    clear:both;
+    width:95%;
+    display:block;
+    /*border: 1px solid #ccc;*/
+    margin: 0px;
+    padding: 15px;
+}
+
+.bigChartContainer h3 {
+    display:block;
+    color: #999;
+    font-size: 42pt;
+    margin: 0;
+}
+
 .miniChart {
-    width: 200px;
+    width: 20%;
     height: 200px;
     float:left;
     display:inline-block;
 }
 
-.miniChart .dygraph-title { font-size: 24px; text-shadow: green 1px 1px 1px; }
+.miniChart .dygraph-title { font-size: 24px; color: #999; }
 
 .innerChart {
     position: absolute;
@@ -56,7 +85,7 @@ a {
     /*border-width: 1px;*/
     /*border-color: #CCCCCC;*/
     float:left;
-    border: 1px solid #ccc;
+    /*border: 1px solid #ccc;*/
     margin: 15px;
     padding: 15px;
     width: 40%;
@@ -92,3 +121,13 @@ a {
     color: #999;
     /*display: inline-block;*/
 }
+
+.giantVideo {
+
+}
+
+.giantVideo video {
+  width: 100%    !important;
+  height: auto   !important;
+}
+
