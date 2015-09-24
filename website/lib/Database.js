@@ -16,18 +16,27 @@ Database.prototype = {
 
 	connect: function() {
 		try {
+			console.log("db connect - start");
+
 			if (this._connection) {
+				console.log("db connect - reusing connection");
 				return when.resolve(this._connection);
 			}
 
 			var that = this;
 			var dfd = when.defer();
+
+			console.log("db connect - attempting connection");
 			var connection = new sql.Connection(settings.database_config, function(err) {
+				console.log("db connect - callback, err was ", err);
+
 				if (err) {
 					console.error("error setting up db connection ", err);
 					return dfd.reject(err);
 				}
 				else {
+					console.log("db connect - uh, I guess we're fine?");
+
 					that._connection = connection;
 					sql.on('error', function(err) {
 						console.error("sql error!? ", err);
@@ -54,6 +63,8 @@ Database.prototype = {
 	 * @returns {*}
 	 */
 	query: function(querySql) {
+		console.log("db query - query start");
+
 		return pipeline([
 			this.connect.bind(this),
 			this._query.bind(this, querySql)
