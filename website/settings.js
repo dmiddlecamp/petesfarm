@@ -36,7 +36,8 @@ else {
 			user: process.env["database_user"],
 			password: process.env["database_password"],
 			server: process.env["database_server"],
-			database: process.env["database_name"]
+			database: process.env["database_name"],
+			driver: process.env["database_driver"]
 		}
 	};
 

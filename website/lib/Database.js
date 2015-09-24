@@ -32,6 +32,9 @@ Database.prototype = {
 					sql.on('error', function(err) {
 						console.error("sql error!? ", err);
 					});
+					that._connection.on('error', function(err) {
+						console.error("sql conn error!? ", err);
+					});
 					return dfd.resolve(that._connection);
 				}
 			});
