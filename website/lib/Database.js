@@ -29,6 +29,9 @@ Database.prototype = {
 				}
 				else {
 					that._connection = connection;
+					sql.on('error', function(err) {
+						console.error("sql error!? ", err);
+					});
 					return dfd.resolve(that._connection);
 				}
 			});
