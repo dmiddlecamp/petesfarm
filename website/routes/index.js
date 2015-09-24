@@ -6,6 +6,8 @@ var Formatters = require('../lib/Formatters.js');
 var when = require('when');
 var pipeline = require('when/pipeline');
 
+var settings = require('../settings.js');
+
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -25,6 +27,16 @@ router.get('/dash', function(req, res, next) {
 			res.render('dash', { latest: latestData });
 		}
 	]);
+});
+
+router.get('/health.json', function(req, res) {
+	res.send({
+		database: {
+			user: settings.database_config.user,
+			server: settings.database_config.server,
+			database: settings.database_config.database
+		}
+	});
 });
 
 module.exports = router;

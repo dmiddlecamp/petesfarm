@@ -12,9 +12,7 @@ var Database = function() {
 };
 
 Database.prototype = {
-
 	_connection: null,
-
 
 	connect: function() {
 		if (this._connection) {
