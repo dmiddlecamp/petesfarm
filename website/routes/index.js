@@ -33,7 +33,11 @@ router.get('/dash', function(req, res, next) {
 router.get('/health.json', function(req, res) {
 	pipeline([
 		function() {
-			return Database.query("select count(*) as count from weather");
+			try {
+				return Database.query("select count(*) as count from weather");
+			} catch(ex) {
+				return when.reject(ex);
+			}
 		},
 		function(records) {
 			res.send({
