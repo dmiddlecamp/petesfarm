@@ -3,6 +3,7 @@
  */
 
 var moment = require('moment');
+var util = require('util');
 
 var Formatters = {
 	//	asCSV: function(records) {
@@ -127,6 +128,30 @@ var Formatters = {
 		}
 
 		return rows.join("\n");
+	},
+
+	/**
+	 * trim floats to 0 digits
+	 * make dates pretty.
+	 * @param latest
+	 */
+	formatLatest: function(latest) {
+		for(var key in latest) {
+			var area = latest[key];
+			for(var subkey in area) {
+				var value = area[subkey];
+				var result;
+
+				if (typeof value == "number") {
+					result = Math.round(value)
+				}
+				else if (util.isDate(value)) {
+					result = moment(value).fromNow();
+				}
+				area[subkey] = result;
+			}
+		}
+		return latest;
 	},
 
 	_: null

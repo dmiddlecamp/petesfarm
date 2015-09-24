@@ -1,57 +1,62 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>{{ title }}</title>
+    <meta charset="utf-8">
+
+    <title>Kate and Pete's Farm Dashboard!</title>
     <link rel='stylesheet' href='/stylesheets/style.css'/>
     <link rel='stylesheet' href='/stylesheets/c3.min.css'/>
     <script src="/javascripts/moment.min.js"></script>
-    <!--<script src="/javascripts/Chart.min.js"></script>-->
+
     <!--<script src="/javascripts/d3.min.js"></script>-->
-    <!--<script src="/javascripts/c3.js"></script>-->
-    <!--<script src="/javascripts/jquery-1.11.3.min.js"></script>-->
     <!--<script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>-->
     <script type="text/javascript" src="/javascripts/dygraph-combined.js"></script>
 </head>
 <body>
-
-    <h3>Heads up readouts</h3>
     <div class="headsUp">
         <div class="dataBrick">
-            Hot Tub Temp:
-            <span class="bigTemp">{{ latest.tub.temp }}</span>
-            <span class="lastHeardDate">(last heard from: {{ latest.tub.published_at }})</span>
-        </div>
-        <div class="dataBrick">
-            Coop Temp:
-            <span class="bigTemp">{{ latest.coop.temp }}</span>
-            <span class="lastHeardDate">(last heard from: {{ latest.coop.published_at }})</span>
-        </div>
-        <div class="dataBrick">
-            Weather Info:
-            <span class="bigTemp">Temp {{ latest.weather.temp1 }}</span>
-            <span class="bigTemp">SoilTemp {{ latest.weather.soilTemp }}</span>
-            <span class="bigTemp">Humidity {{ latest.weather.humidity }}</span>
-            <span class="bigTemp">Rain {{ latest.weather.rain }}</span>
-            <span class="bigTemp">Wind Speed {{ latest.weather.wind_mph }}</span>
+            <h3>Weather</h3>
+            <span class="lastHeardDate">(last heard: {{ latest.weather.published_at }})</span>
+            <span class="bigTemp"> {{ latest.weather.temp1 }} <text>Air Temp</text></span>
+            <span class="bigTemp">{{ latest.weather.soilTemp }} <text>Soil Temp</text></span>
+            <span class="bigTemp">{{ latest.weather.humidity }} <text>Humidity</text></span>
+            <span class="bigTemp">{{ latest.weather.rain }} <text>Rain</text></span>
+            <span class="bigTemp">{{ latest.weather.wind_mph }} <text>Wind</text></span>
             <!--<span class="bigTemp">{{ latest.weather.wind_dir }}</span>-->
-
-            <span class="lastHeardDate">(last heard from: {{ latest.weather.published_at }})</span>
         </div>
+
+        <div class="dataBrick">
+            <h3>Hot Tub</h3>
+            <span class="lastHeardDate">(last heard: {{ latest.tub.published_at }})</span>
+
+            <span class="bigTemp">{{ latest.tub.temp }} <text>Tub Temp</text></span>
+
+        </div>
+        <div class="dataBrick">
+            <h3>Coop</h3>
+            <span class="lastHeardDate">(last heard: {{ latest.coop.published_at }})</span>
+
+            <span class="bigTemp">{{ latest.coop.temp }} <text>Coop Temp</text></span>
+        </div>
+
+        <div class="clearBoth"></div>
     </div>
 
 
-    <div id="miniTub" class="miniChart" >loading...</div>
-    <div id="miniCoop" class="miniChart" >loading...</div>
+
+    <div class="miniChartContainer">
+        <div id="miniSoilTemp" class="miniChart" >loading...</div>
+        <div id="miniWindSpeed" class="miniChart" >loading...</div>
+        <div id="miniHumidity" class="miniChart" >loading...</div>
+
+        <div id="miniCoop" class="miniChart" >loading...</div>
+        <div id="miniTub" class="miniChart" >loading...</div>
+        <div class="clearBoth"></div>
+    </div>
 
 
-    <div id="miniSoilTemp" class="miniChart" >loading...</div>
-    <div id="miniWindSpeed" class="miniChart" >loading...</div>
-    <div id="miniHumidity" class="miniChart" >loading...</div>
 
-
-
-
-
+    <h3></h3>
     <div class="chartContainer">
         <div id="tubChart" class="innerChart" >hot tub temperature history loading...</div>
     </div>
@@ -69,6 +74,8 @@
     <div class="chartContainer">
         <div id="pressureChart" class="innerChart">weather history loading...</div>
     </div>
+
+
 
     <script src="/pages/dash.js"></script>
 </body>

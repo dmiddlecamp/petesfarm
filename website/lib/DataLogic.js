@@ -29,30 +29,35 @@ var DataLogic = {
 	 * @returns {*}
 	 */
 	dbQuery: function(params, tableName, orderColumn, allowedColumns) {
+		try {
+			if (typeof params.param == "function") {
+				//we got passed a req, instead of just an object.
+				params = DataLogic.getParams(params);
+			}
 
-		if (typeof params.param == "function") {
-			//we got passed a req, instead of just an object.
-			params = DataLogic.getParams(params);
+			var count = params.count;
+			var ascDesc = params.sort;
+
+			var userColumns = allowedColumns;
+			var columnsParam = params.columns;
+			if (columnsParam) {
+				userColumns = columnsParam.split(",");
+
+				//sanitize your inputs kids!
+				userColumns = utilities.filterListInList(allowedColumns, userColumns);
+			}
+
+			var query = "select "
+				+ "top " + count + " "
+				+ userColumns.join(", ") +
+				" from " + tableName + " order by " + orderColumn + " " + ascDesc;
+
+			return Database.query(query);
 		}
-
-		var count = params.count;
-		var ascDesc = params.sort;
-
-		var userColumns = allowedColumns;
-		var columnsParam = params.columns;
-		if (columnsParam) {
-			userColumns = columnsParam.split(",");
-
-			//sanitize your inputs kids!
-			userColumns = utilities.filterListInList(allowedColumns, userColumns);
+		catch (ex) {
+			console.error("dbQuery error! ", ex);
+			return when.reject(ex);
 		}
-
-		var query = "select "
-			+ "top " + count + " "
-			+ userColumns.join(", ") +
-			" from " + tableName + " order by " + orderColumn + " " + ascDesc;
-
-		return Database.query(query);
 	},
 
 	coopQuery: function(req) {

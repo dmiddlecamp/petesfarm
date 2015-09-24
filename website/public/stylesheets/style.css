@@ -19,12 +19,24 @@ a {
     display: block;
 }
 
+.clearBoth {
+    clear:both;
+}
+
+.miniChartContainer {
+    clear:both;
+    width:100%;
+    display:block;
+
+}
 .miniChart {
     width: 200px;
     height: 200px;
+    float:left;
+    display:inline-block;
 }
 
-.miniChart .dygraph-title { font-size: 36px; text-shadow: gray 2px 2px 2px; }
+.miniChart .dygraph-title { font-size: 24px; text-shadow: green 1px 1px 1px; }
 
 .innerChart {
     position: absolute;
@@ -36,4 +48,45 @@ a {
 
 #tubChart {
 
+}
+
+.dataBrick {
+    display:block;
+    /*border-style: solid;*/
+    /*border-width: 1px;*/
+    /*border-color: #CCCCCC;*/
+    float:left;
+    border: 1px solid #ccc;
+    margin: 15px;
+    padding: 15px;
+    width: 40%;
+}
+
+.dataBrick h3 {
+    display:block;
+    color: #999;
+    font-size: 42pt;
+    margin: 0;
+}
+
+
+
+.dataBrick .bigTemp {
+    display:block;
+    font-size: 36pt;
+    margin-left: 25px;
+    margin-top: 5px;
+}
+
+.dataBrick text {
+    color: #999;
+    font-size: 24pt;
+}
+
+.dataBrick .lastHeardDate {
+    font-size: 8pt;
+
+    /*text-align: right;*/
+    color: #999;
+    /*display: inline-block;*/
 }

@@ -2,6 +2,7 @@ var express = require('express');
 var router = express.Router();
 
 var DataLogic = require('../lib/DataLogic.js');
+var Formatters = require('../lib/Formatters.js');
 var when = require('when');
 var pipeline = require('when/pipeline');
 
@@ -16,6 +17,9 @@ router.get('/dash', function(req, res, next) {
 	pipeline([
 		function() {
 			return DataLogic.getLatest();
+		},
+		function(latest) {
+			return Formatters.formatLatest(latest);
 		},
 		function(latestData) {
 			res.render('dash', { latest: latestData });
