@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 
+var Database = require('../lib/Database.js');
 var DataLogic = require('../lib/DataLogic.js');
 var Formatters = require('../lib/Formatters.js');
 var when = require('when');
@@ -30,13 +31,25 @@ router.get('/dash', function(req, res, next) {
 });
 
 router.get('/health.json', function(req, res) {
-	res.send({
-		database: {
-			user: settings.database_config.user,
-			server: settings.database_config.server,
-			database: settings.database_config.database
+	pipeline([
+		function() {
+			return Database.query("select count(*) as count from weather");
+		},
+		function(records) {
+
+
+			res.send({
+				database: {
+					weather_rows: records[0].count,
+					user: settings.database_config.user,
+					server: settings.database_config.server,
+					database: settings.database_config.database
+				}
+			});
 		}
-	});
+	]);
+
+
 });
 
 module.exports = router;

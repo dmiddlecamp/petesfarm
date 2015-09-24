@@ -15,24 +15,30 @@ Database.prototype = {
 	_connection: null,
 
 	connect: function() {
-		if (this._connection) {
-			return when.resolve(this._connection);
+		try {
+			if (this._connection) {
+				return when.resolve(this._connection);
+			}
+
+			var that = this;
+			var dfd = when.defer();
+			var connection = new sql.Connection(settings.database_config, function(err) {
+				if (err) {
+					console.error("error setting up db connection ", err);
+					return dfd.reject(err);
+				}
+				else {
+					that._connection = connection;
+					return dfd.resolve(that._connection);
+				}
+			});
+
+			return dfd.promise;
 		}
-
-		var that = this;
-		var dfd = when.defer();
-		var connection = new sql.Connection(settings.database_config, function(err) {
-			if (err) {
-				console.error("error setting up db connection ", err);
-				return dfd.reject(err);
-			}
-			else {
-				that._connection = connection;
-				return dfd.resolve(that._connection);
-			}
-		});
-
-		return dfd.promise;
+		catch(ex) {
+			console.error("database connect exploded ", ex);
+			return when.reject(ex);
+		}
 	},
 
 
