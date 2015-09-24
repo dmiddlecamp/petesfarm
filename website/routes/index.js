@@ -10,14 +10,13 @@ var pipeline = require('when/pipeline');
 var settings = require('../settings.js');
 
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-	res.render('index', { title: 'Express' });
-});
+///* GET home page. */
+//router.get('/', function(req, res, next) {
+//	res.render('index', { title: 'Express' });
+//});
 
-/* GET dash page. */
-router.get('/dash', function(req, res, next) {
-	pipeline([
+var renderDashboard = function(req, res) {
+		pipeline([
 		function() {
 			return DataLogic.getLatest();
 		},
@@ -28,13 +27,15 @@ router.get('/dash', function(req, res, next) {
 			res.render('dash', { latest: latestData });
 		}
 	]);
-});
+}
+
+/* GET dash page. */
+router.get('/', renderDashboard);
+router.get('/dash', renderDashboard);
 
 router.get('/health.json', function(req, res) {
-	console.log("health hit");
 	pipeline([
 		function() {
-			console.log("health - in pipeline");
 			try {
 				return Database.query("select count(*) as count from weather");
 			} catch(ex) {
