@@ -11,6 +11,47 @@
     <!--<script src="/javascripts/d3.min.js"></script>-->
     <!--<script type="text/javascript" src="/javascripts/dygraph-combined-dev.js"></script>-->
     <script type="text/javascript" src="/javascripts/dygraph-combined.js"></script>
+
+    <!--
+        Hello!  You're looking at a dashboard I made for my brother Pete!  It uses 3 sets of sensors
+        each powered by a Particle photon ( https://www.particle.io/ ) and a few Particle webhooks (free!)
+
+        The data is pushed to Azure Event Hubs, Streamed into a SQL database with Stream Processors,
+        and then served up in the Node.js Web App.
+
+        I wanted to demonstrate something that could be built in a weekend!  The sensors were assembled in a day,
+        deployed in another single day, and this website was created in about a day (give or take).  It's probably
+        missing some awesome bells and whistles, but you're certainly welcome to add some if you like!  The code is
+        here, along with the firmware for the sensors, instructions on how to build everything, and my talk:
+
+            https://github.com/dmiddlecamp/petesfarm
+
+        Thanks!
+        David Middlecamp (david@particle.io)
+
+
+      .".".".
+    (`       `)               _.-=-.
+     '._.--.-;             .-`  -'  '.
+    .-'`.o )  \           /  .-_.--'  `\
+   `;---) \    ;         /  / ;' _-_.-' `
+     `;"`  ;    \        ; .  .'   _-' \
+      (    )    |        |  / .-.-'    -`
+       '-.-'     \       | .' ` '.-'-\`
+        /_./\_.|\_\      ;  ' .'-'.-.
+        /         '-._    \` /  _;-,
+       |         .-=-.;-._ \  -'-,
+       \        /      `";`-`,-"`)
+        \       \     '-- `\.\
+         '.      '._ '-- '--'/
+           `-._     `'----'`;
+               `"""--.____,/
+                      \\  \
+                      // /`
+                  ___// /__
+        jgs     (`(`(---"-`)
+
+    -->
 </head>
 <body>
     <div class="headsUp">
