@@ -31,17 +31,23 @@ if (fs.existsSync(overridesFile)) {
 		console.error("error opening overrides ", ex);
 	}
 }
-else {
+else
+{
 	var env_vars = {
 		database_config: {
 			user: process.env["database_user"],
 			password: process.env["database_password"],
 			server: process.env["database_server"],
 			database: process.env["database_name"],
-			driver: process.env["database_driver"]
+			driver: process.env["database_driver"],
+			options: {
+				encrypt: true
+			}
 		}
 	};
 
 	settings = extend(settings, env_vars);
 }
+
+
 module.exports = settings;
