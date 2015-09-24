@@ -6,7 +6,7 @@
     "start": "node ./website/bin/www"
   },
   "engines" : { "node" : "4.0.0",
-                  "npm": ">=1.0.0" },
+                  "npm": ">=1.4.28" },
   "dependencies": {
     "body-parser": "~1.13.2",
     "cookie-parser": "~1.3.5",
