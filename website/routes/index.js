@@ -31,8 +31,10 @@ router.get('/dash', function(req, res, next) {
 });
 
 router.get('/health.json', function(req, res) {
+	console.log("health hit");
 	pipeline([
 		function() {
+			console.log("health - in pipeline");
 			try {
 				return Database.query("select count(*) as count from weather");
 			} catch(ex) {
@@ -40,6 +42,8 @@ router.get('/health.json', function(req, res) {
 			}
 		},
 		function(records) {
+			console.log("health - query success");
+
 			res.send({
 				database: {
 					weather_rows: records[0].count,
