@@ -47,7 +47,9 @@ router.get('/health.json', function(req, res) {
 				}
 			});
 		}
-	]);
+	]).catch(function(err) {
+		res.send(401, { msg: "something went wrong!", error: err});
+	})
 
 
 });
