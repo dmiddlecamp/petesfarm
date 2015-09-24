@@ -26,6 +26,10 @@ Database.prototype = {
 			var that = this;
 			var dfd = when.defer();
 
+			sql.on('error', function(err) {
+				console.error("sql error!? ", err);
+			});
+
 			console.log("db connect - attempting connection");
 			var connection = new sql.Connection(settings.database_config, function(err) {
 				console.log("db connect - callback, err was ", err);
@@ -38,9 +42,7 @@ Database.prototype = {
 					console.log("db connect - uh, I guess we're fine?");
 
 					that._connection = connection;
-					sql.on('error', function(err) {
-						console.error("sql error!? ", err);
-					});
+
 					that._connection.on('error', function(err) {
 						console.error("sql conn error!? ", err);
 					});
