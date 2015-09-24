@@ -12,7 +12,7 @@ var settings = {
 		password: null,
 		server: null,
 		database: 'farm-db',
-		driver: "tedious",
+		driver: "tds",
 		options: {
 			encrypt: true
 		}
