@@ -36,8 +36,6 @@ router.get('/health.json', function(req, res) {
 			return Database.query("select count(*) as count from weather");
 		},
 		function(records) {
-
-
 			res.send({
 				database: {
 					weather_rows: records[0].count,
