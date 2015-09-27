@@ -69,7 +69,7 @@
 		makeCoopChart: function() {
 			this.coopChart = new Dygraph(
 				document.getElementById("coopChart"),
-				"/data/coop.csv&sort=DESC",
+				"/data/coop.csv?sort=DESC",
 				{
 					showRangeSelector: true,
 					showRoller: true,
@@ -88,7 +88,7 @@
 		makeTubChart: function() {
 			this.tubChart = new Dygraph(
 				document.getElementById("tubChart"),
-				"/data/tub.csv&sort=DESC",
+				"/data/tub.csv?sort=DESC",
 				{
 					showRangeSelector: true,
 					title: 'Hot Tub Temperature',
