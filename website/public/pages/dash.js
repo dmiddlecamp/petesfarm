@@ -69,7 +69,7 @@
 		makeCoopChart: function() {
 			this.coopChart = new Dygraph(
 				document.getElementById("coopChart"),
-				"/data/coop.csv",
+				"/data/coop.csv&sort=DESC",
 				{
 					showRangeSelector: true,
 					showRoller: true,
@@ -88,7 +88,7 @@
 		makeTubChart: function() {
 			this.tubChart = new Dygraph(
 				document.getElementById("tubChart"),
-				"/data/tub.csv",
+				"/data/tub.csv&sort=DESC",
 				{
 					showRangeSelector: true,
 					title: 'Hot Tub Temperature',
@@ -108,7 +108,7 @@
 		makeWeatherChart: function() {
 			this.weatherChart = new Dygraph(
 				document.getElementById("weatherChart"),
-				"/data/weather.csv?columns=temp1,soilTemp,humidity,wind_mph,rain,published_at", {
+				"/data/weather.csv?columns=temp1,soilTemp,humidity,wind_mph,rain,published_at&sort=DESC", {
 					showRangeSelector: true,
 					rollPeriod: 5,
 					title: 'Weather History',
@@ -122,7 +122,7 @@
 		makePressureChart: function() {
 			this.pressureChart = new Dygraph(
 				document.getElementById("pressureChart"),
-				"/data/weather.csv?columns=pressure,published_at", {
+				"/data/weather.csv?columns=pressure,published_at&sort=DESC", {
 					showRangeSelector: true,
 					rollPeriod: 5,
 					title: 'Air Pressure History',
