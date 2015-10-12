@@ -162,9 +162,9 @@ void loop(void) {
     publishCount++;
   }
 
-  // 3 * 60s == 3 minutes on
-  if (publishCount >= 3) {
-      System.sleep(SLEEP_MODE_DEEP, 10 * 60);    //sleep for 10 minutes
+  // 2 * 60s == 2 minutes on
+  if (publishCount >= 2) {
+      System.sleep(SLEEP_MODE_DEEP, 15 * 60);    //sleep for 15 minutes
   }
 }
 
